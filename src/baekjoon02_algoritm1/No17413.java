@@ -30,7 +30,8 @@ import java.util.Stack;
 1. 입력받는다.
 	- 전체를 문자열로 받아야한다. 쪼개면 태그안에 띄어쓰기까지 토큰으로 쪼개질듯
 	- <> 태그는 시작'<' 끝'>'으로 구분하고 순서를 바꾸지 않는다 -> 큐를 사용하면 될듯?
-	- 태그를 제외하고 띄어쓰기로 구분된 모든 단어는 문자열 순서를 바꾼다(띄어쓰기 여러개를 주의) -> 스택사용
+	- 태그를 제외하고 띄어쓰기로 구분된 모든 단어는 문자열 순서를 바꾼다(띄어쓰기 여러개를 주의) 
+		-> 스택사용 -> 생각해보니 스택안쓰고 그냥 StringBuilder에 담으면 됨
 2. 출력한다.
 	- 출력은 StringBuilder를 사용하면 될거같다.
 */
@@ -54,11 +55,9 @@ public class No17413 {
             	check=true;
             	while(!s.isEmpty()){ sb.append(s.pop()); }
             }
-            if(check){
-                sb.append(c);
-            }else{
-                toStack(c);
-            }
+            if(check) sb.append(c);
+            else toStack(c);
+
             if(c == '>') check = false;
         }
         while(!s.isEmpty()){ sb.append(s.pop()); }
